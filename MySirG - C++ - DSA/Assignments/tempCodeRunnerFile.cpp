@@ -1,0 +1,1 @@
+minStack.Push(data);
