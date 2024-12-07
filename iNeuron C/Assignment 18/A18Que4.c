@@ -11,6 +11,7 @@ int main()
     printf("This program transform string into uppercase.\n");
     printf("Enter string: ");
     fgets(c, 50, stdin);
+    c[strcspn(c, "\n")] = '\0';
     strupr(c);
     return 0;
 }

@@ -2,8 +2,9 @@
 // 3. Write a function to compare two strings.
 
 #include<stdio.h>
+#include<string.h>
 
-int compstr(char [], char[]);
+int compstr(char [50], char[50]);
 
 int main()
 {
@@ -14,6 +15,8 @@ int main()
     fgets(a, 50, stdin);
     printf("Enter second string: ");
     fgets(b,50,stdin);
+    a[strcspn(a, "\n")] = '\0';
+    b[strcspn(b, "\n")] = '\0';
     ans=compstr(a,b);
     if(ans==0)
     {

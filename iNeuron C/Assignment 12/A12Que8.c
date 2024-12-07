@@ -9,18 +9,18 @@ int main()
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    printBinary(n);
+    if(n==0) {
+        printf("0");
+    } else {
+        printBinary(n);
+    }
 }
 
 void printBinary(int n)
 {
-    // if(n==2)
-    // {
-    //     printf("1");
-    // }
-    if(n==1)
+    if(n==0)
     {
-        printf("1");
+        return;
     }
     else
     {

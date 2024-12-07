@@ -6,48 +6,35 @@
 
 int main()
 {
-    printf("This program takes list of email addresses and check whether all email address have '@' in it.\n");
-    printf("Enter number of email addresses you are going to enter: ");
-    int n, i, j;
+    printf("This program checks a list of email addresses and verifies whether each has '@'.\n");
+    printf("Enter the number of email addresses you want to check: ");
+    
+    int n, i;
     scanf("%d", &n);
-    char c[n+1][50];
-    int position[n+1];
-    for(i=0; i<=n; i++)
-    {
-        position[i]=1;
-    }
-    printf("Enter %d email addresses: ", n);
-    for(i=0; i<=n; i++)
+    getchar();
+    char c[n][50];
+    int allValid = 1;
+    
+    printf("Enter %d email addresses: \n", n);
+    for(i = 0; i < n; i++)
     {
         fgets(c[i], 50, stdin);
+        c[i][strcspn(c[i], "\n")] = '\0';
     }
 
-    for(i=0; i<=n; i++)
+    for(i = 0; i < n; i++)
     {
-        for (j=0; c[i][j]; j++)
+        if(strchr(c[i], '@') == NULL)       // strchr returns NULL if '@' is not found
         {
-            if(c[i][j]==64)
-            {
-                position[i]=0;
-                break;
-            }
-        }
-        
-    }
-    printf("The odd emails are: ");
-    for(i=0; i<=n; i++)
-    {
-        if(position[i]==1)
-        {
-            printf("%s", c[i]);
+            printf("The odd email (without '@') is: %s\n", c[i]);
+            allValid = 0;
         }
     }
 
+    if(allValid)
+    {
+        printf("All email addresses are valid (contain '@').\n");
+    }
+
+    return 0;
 }
-
-
-
-/*
-there is a function strchr() jisme voh string leta hai aur character leta hai aur agar usey voh character milta hai toh voh 0 return karta hai
-aur agar not equal zero return karta hai toh matlab character not found...
-*/

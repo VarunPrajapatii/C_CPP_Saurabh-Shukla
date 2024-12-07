@@ -15,8 +15,11 @@ int main()
         scanf("%d", &a[i]);
     }
     position=dup(a,n);
-    printf("The position of first diplicate value occurence is %d.", position+1);
-
+    if (position != -1) {
+        printf("The first occurrence of adjacent duplicate value is %d.\n", position);
+    } else {
+        printf("No adjacent duplicate values found.\n");
+    }
 }
 
 int dup(int b[], int n)
@@ -25,6 +28,7 @@ int dup(int b[], int n)
     for(i=0; i<n-1; i++)
     {
         if(b[i]==b[i+1])
-            return i;
+            return b[i];
     }
+    return -1;
 }

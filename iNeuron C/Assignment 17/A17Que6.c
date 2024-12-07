@@ -8,28 +8,24 @@ int main()
 {
     char c[20];
     int i, lastindex, temp;
-    printf("This program reverse a given string.\n");
+
+    printf("This program reverses a given string.\n");
     printf("Enter string: ");
     fgets(c, 20, stdin);
-    for(i=0; c[i]; i++)
-    {
-        lastindex=i;
-    }
-    // for(i=0; i<=lastindex/2; i++)
-    // {
-    //     temp=c[i];
-    //     c[i]=c[lastindex];
-    //     c[lastindex]=temp;
-    // }
+    
+    // Remove the newline character added by fgets
+    c[strcspn(c, "\n")] = '\0';
 
-    int len, j;
-    char b[50];
-    len=strlen(c);
-    for(i=len-2, j=0; i>=0; i--, j++)
-    {
-        b[j]=c[i];
+    for(i = 0; c[i]; i++) {
+        lastindex = i;
     }
-    printf("Reverse of string is %s.", b);
-    // printf("%s", c);
+    // Inplace
+    for(i = 0; i <= lastindex / 2; i++) {
+        temp = c[i];
+        c[i] = c[lastindex - i];
+        c[lastindex - i] = temp;
+    }
+    printf("Reverse of the string is: %s\n", c);
 
+    return 0;
 }

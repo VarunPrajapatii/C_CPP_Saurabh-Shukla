@@ -9,14 +9,18 @@ int main()
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    printOctal(n);
+    if(n == 0) {
+        printf("0");
+    } else {
+        printOctal(n);
+    }
 }
 
 void printOctal(int n)
 {
-    if(n<8)
+    if(n==0)
     {
-        printf("%d", n);
+        return;
     }
     else
     {

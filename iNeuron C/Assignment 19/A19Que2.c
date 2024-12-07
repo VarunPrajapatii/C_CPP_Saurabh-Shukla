@@ -9,40 +9,29 @@ int main()
     char c[10][20], a[10][20], min, temp[20];
     int i, j, flag[10], k=0, index;
     printf("This program sort 10 city names taken from user.\n");
-    printf("Enter 10 city names in small letters separated by enter key: ");
+    printf("Enter 10 city names in small letters separated by enter key:\n");
     for(i=0; i<10; i++)
     {
         fgets(c[i], 20, stdin);
+        c[i][strcspn(c[i], "\n")] = '\0';
     }
 
-    for(i=0; i<10; i++)
+    for(i = 0; i < 10; i++)
     {
-        for(j=0; j<9-i; j++)
+        for(j = 0; j < 9 - i; j++)
         {
-            if(c[j][0]>c[j+1][0])
+            if(strcmp(c[j], c[j+1]) > 0)
             {
                 strcpy(temp, c[j]);
                 strcpy(c[j], c[j+1]);
                 strcpy(c[j+1], temp);
             }
-            // else
-            // { 
-            //     if(c[j][0]=c[j+1][0])
-            //     {
-            //         if(c[j][1]>c[j+1][1])
-            //         {
-            //             strcpy(temp, c[j]);
-            //             strcpy(c[j], c[j+1]);
-            //             strcpy(c[j+1], temp);
-            //         }
-            //     }
-            // }
         }
     }
-    printf("Sorted list of cities are: ");
+    printf("Sorted list of cities are:\n");
     for(i=0; i<10; i++)
     {
-        printf("%s", c[i]);
+        printf("%s\n", c[i]);
     }
 
 

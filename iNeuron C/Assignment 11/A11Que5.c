@@ -2,36 +2,40 @@
 // 5. Write a function to print first N prime numbers (TSRN)
 
 #include<stdio.h>
-void firstNprime(int);
-int main()
-{
+#include<math.h>
+
+int isPrime(int n) {
+    if (n <= 1) return 0;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void firstNprime(int n) {
+    int count = 0;
+    int num = 2;
+
+    while (count < n) {
+        if (isPrime(num)) {
+            printf("%d ", num);
+            count++;
+        }
+        num++;
+    }
+}
+
+int main() {
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    if(n>1)
-    {
-        printf("First nprime numbers are: 2");
+    if (n > 0) {
+        printf("First %d prime numbers are: ", n);
         firstNprime(n);
+    } else {
+        printf("Please enter a positive number.");
     }
     return 0;
-}
-
-void firstNprime(int n)
-{
-    int i, j=3;
-    while(n!=1)
-    {
-        for(i=2; i<j; i++)
-        {
-            if(j%i==0)
-            {
-                j++;
-                // continue;
-                break;
-            }
-        }
-        printf(", %d ", j);
-        j++;
-        n--;
-    }
 }

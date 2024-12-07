@@ -2,6 +2,7 @@
 // 1. Write a program to find the number of vowels in each of the 5 strings stored in two dimensional arrays, taken from the user.
 
 #include<stdio.h>
+#include<string.h>
 
 int main()
 {
@@ -12,6 +13,7 @@ int main()
     for(i=0; i<5; i++)
     {
         fgets(c[i], 20, stdin);
+        c[i][strcspn(c[i], "\n")] = '\0';
     }
     for(i=0; i<5; i++)
     {

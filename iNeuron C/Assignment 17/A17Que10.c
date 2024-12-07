@@ -3,42 +3,26 @@
 
 #include<stdio.h>
 #include<string.h>
+
 int main()
 {
     char c[50];
-    printf("This program Find the Frequency of Characters in given string.\n");
+    printf("This program finds the frequency of characters in the given string.\n");
     printf("Enter string: \n");
-    fgets(c,50,stdin);
-    int i, j, l, temp=1;
-    l=strlen(c);
-    for(i=0; i<l-1; i++)
-    {
-        for(j=0; j<l-2-i; j++)
-        {
-            if(c[j]>c[j+1])
-            {
-                temp=c[j];
-                c[j]=c[j+1];
-                c[j+1]=temp;
-            }
+    fgets(c, 50, stdin);
+    int freq[256] = {0};
+    
+    // Remove newline character if it exists
+    c[strcspn(c, "\n")] = '\0';
+    
+    for(int i = 0; c[i]; i++) {
+        freq[c[i]]++;
+    }
+    printf("Frequency of characters:\n");
+    for(int i = 0; i < 256; i++) {
+        if(freq[i] > 0) {
+            printf("Character '%c' appears %d times.\n", i, freq[i]);
         }
     }
-    temp=1;
-    for(i=0; i<l-1; i++)
-    {
-        if(c[i]==c[i+1])
-        {
-            temp++;
-        }
-        else
-        {
-            printf("Frequency of %c is %d.\n", c[i], temp);
-            temp=1;
-        }
-    }
+    return 0;
 }
-
-
-
-/*what you can do is make an array of 226 and put 0 at every place. and traverse the string once and just increment every the block of that array whose index is the ascii code 
-of the character coming. then print the characters with index containig value greater than 0...*/

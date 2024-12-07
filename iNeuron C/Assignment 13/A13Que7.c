@@ -14,14 +14,20 @@ int main()
     return 0;
 }
 
-int hcf(int a, int b)
-{
-    if(a==0)
-        return b;
-    if(b==0)
-        return a;
-    if(a>b)
-        return (hcf(a%b, b));
-    if(a<b)
-        return (hcf(b%a, a));
+// int hcf(int a, int b)
+// {
+//     if(a==0)
+//         return b;
+//     if(b==0)
+//         return a;
+//     if(a>b)
+//         return (hcf(a%b, b));
+//     if(a<b)
+//         return (hcf(b%a, a));
+// }
+
+//By Euclid's Algo
+int hcf(int a, int b) {
+    if(b == 0) return a;
+    else return hcf(b, a%b); 
 }

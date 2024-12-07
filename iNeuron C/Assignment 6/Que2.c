@@ -4,13 +4,12 @@
 #include<stdio.h>
 int main()
 {
-    int n, sum=0, i;
+    int n, sum=0, i=2;
     printf("Enter a number: ");
     scanf("%d", &n);
-    for (i=0; i <= n; i++)
-    {
-        sum=sum+i;
-        i++;
+    for(; n>0; i+=2) {
+        sum+=i;
+        n--;
     }
     printf("%d", sum);
 

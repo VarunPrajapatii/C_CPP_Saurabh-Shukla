@@ -3,6 +3,7 @@
 
 
 #include<stdio.h>
+#include<math.h>
 int main()
 {
     int n, i, j, flag;
@@ -11,7 +12,7 @@ int main()
     scanf("%d", &n);
     for(i=n+1;1;i++)
     {
-        for(j=i/2; j>1; j--)
+        for(j=2; j<sqrt(i); j++)
         {
             if(i%j==0)
                 flag=1;

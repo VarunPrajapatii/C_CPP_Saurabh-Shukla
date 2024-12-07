@@ -3,48 +3,37 @@
 
 #include<stdio.h>
 
-void findrep(char []);
+void findRep(char[]);
 
 int main()
 {
     char c[50];
-    printf("This program find the repeated character in a given string.\n");
+    printf("This program finds the repeated characters in a given string.\n");
     printf("Enter string: ");
     fgets(c, 50, stdin);
-    findrep(c);
+    findRep(c);
 }
 
-
-void findrep(char a[])
+void findRep(char a[])
 {
-    char b[50];
-    int i, j, flag=0, k=0;
-    for(i=0; a[i]; i++)
-    {
-        flag=0;
-        for(j=i+1; a[j]; j++)
-        {
-            if(a[j]==a[i])
-            {
-                flag++;
-                a[j]=32;
-            }
-        }
-        if(flag>0)
-        {
-            b[k]=a[i];
-            k++;
-        }
-        
-    }
-    b[k]='\0';
-    printf("These charaters are repeated in string: ");
-    for(i=0; b[i]; i++)
-    {
-        if(b[i]==32)
-            continue;
-        printf("%c ", b[i]);
+    int i, j;
+    int count[256] = {0};
+
+    for (i = 0; a[i] != '\0'; i++) {
+        count[(int)a[i]]++;
     }
 
+    printf("These characters are repeated in the string: ");
+    int flag = 0;
+    for (i = 0; i<256; i++) {
+        if (count[i] > 1) {
+            printf("%c ", (char)i);
+            flag = 1;
+        }
+    }
 
+    if (!flag) {
+        printf("No repeated characters.");
+    }
+    printf("\n");
 }

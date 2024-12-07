@@ -17,9 +17,10 @@ int main()
 void printodd(int n)
 {
     int i;
-    for (i = 0; i <n; i++)
+    for (i = 0; n>0; i++)
     {
         printf("%d ", 2*i+1);
+        n--;
     }
     
 }

@@ -18,14 +18,11 @@ int main()
 
 int hcfoftwo(int a, int b)
 {
-    int x, i;
-    x=(a<b?a:b);
-    for(i=x; i>=1; i--)
-    {
-        if(a%i==0 && b%i==0)
-        {
-            return i;
-        }
-        break;
+    while(b!=0) {
+        int temp = b;
+        b = a%b;
+        a = temp;
+        printf("%d", a);
     }
+    return a;
 }

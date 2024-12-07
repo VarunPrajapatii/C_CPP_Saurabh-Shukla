@@ -3,19 +3,23 @@
 
 #include<stdio.h>
 
-int main()
-{
+int main() {
     char a[50], *ptr;
-    int last, i;
+    int last = 0, i;
+
     printf("Enter a string: ");
-    fgets(a,50,stdin);
-    ptr=a;
-    for(i=0; a[i]!='\n'; i++)
-    {
+    fgets(a, 50, stdin);
+
+    ptr = a;
+    while (*(ptr + last) != '\n' && *(ptr + last) != '\0') {
+        last++;
     }
-    last=i-1;
-    for(i=last; i>=0; i--)
-    {
-        printf("%c", *(ptr+i));
+    last--;
+    printf("Reversed string: ");
+    for (i = last; i >= 0; i--) {
+        printf("%c", *(ptr + i));
     }
+    printf("\n");
+
+    return 0;
 }

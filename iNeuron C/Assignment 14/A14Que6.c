@@ -3,7 +3,7 @@
 #include<stdio.h>
 int main()
 {
-    int a[10], i, j, max, temp, maxind;
+    int a[10], i, j, min, temp, minIndex;
     printf("Enter 10 positive numbers: ");
     for(i=0; i<10; i++)
     {
@@ -11,18 +11,19 @@ int main()
     }
     for(i=0;i<10;i++)
     {
-        max=a[i];
+        min=a[i];
+        minIndex=i;
         for(j=i; j<10; j++)
         {
-            if(a[j]>=max)
+            if(a[j]<=min)
             {
-                max=a[j];
-                maxind=j;
+                min=a[j];
+                minIndex=j;
             }
         }
         temp=a[i];
-        a[i]=max;
-        a[maxind]=temp;
+        a[i]=min;
+        a[minIndex]=temp;
     }
     for(i=0; i<10; i++)
     {
@@ -30,3 +31,5 @@ int main()
     }
     return 0;
 }
+
+// That was Selection Sort

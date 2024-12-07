@@ -1,28 +1,31 @@
 // 3. Write a function to sort an array of any size. (TSRS)
 
 #include<stdio.h>
-int sortit (int [], int);
+void sortit(int [], int );
 void display(int [], int);
-int sortit(int a[], int n)
+void sortit(int a[], int n)
 {
-    int min=a[0], i, j, index, temp;
-    for(i=0; i<n; i++)
+    int i, j, index, temp;
+    for (i = 0; i < n - 1; i++)
     {
-        min=a[i];
-        for(j=i; j<n; j++)
+        index = i;
+        for (j = i + 1; j < n; j++)
         {
-            if(a[j]<=min)
+            if (a[j] < a[index])
             {
-                min=a[j];
-                index=j;
+                index = j;
             }
         }
-        temp= a[i];
-        a[i]= min;
-        a[index]= temp;
+        
+        if (index != i)
+        {
+            temp = a[i];
+            a[i] = a[index];
+            a[index] = temp;
+        }
     }
-    return &a[0];
 }
+
 
 void display(int b[], int n)
 {

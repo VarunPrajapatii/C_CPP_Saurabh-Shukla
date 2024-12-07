@@ -1,25 +1,26 @@
 // 1. Write a recursive function to print first N natural numbers
 
 #include<stdio.h>
-int add(int);
+void printN(int);
 
 int main()
 {
-    int n, ans=0;
+    int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    ans=add(n);
-    printf("Sum is %d.", ans);
+    printN(n);
 }
 
-int add(int n)
+void printN(int n)
 {
-    int ans;
     if(n==1)
-        return 1;
+    {
+        printf("1 ");
+        return;
+    }
     else
     {
-        ans=n+add(n-1);
+        printN(n-1);
+        printf("%d ", n);
     }
-    return ans;
 }

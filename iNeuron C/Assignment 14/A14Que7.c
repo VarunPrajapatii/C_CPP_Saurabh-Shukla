@@ -1,30 +1,29 @@
-// 7. Write a program to find second largest in an array.Take array values from the user.
+// 7. Write a program to find second largest in an array. Take array values from the user.
 
 #include<stdio.h>
+#include <limits.h>
+
 int main()
 {
-    int a[10], i, j, max, temp, maxind;
+    int a[10], i, j, max, secondMax;
     printf("Enter 10 positive numbers: ");
     for(i=0; i<10; i++)
     {
         scanf("%d", &a[i]);
     }
+    max = secondMax = INT_MIN;
     for(i=0;i<10;i++)
     {
-        max=0;
-        for(j=i; j<10; j++)
-        {
-            if(a[j]>=max)
-            {
-                max=a[j];
-                maxind=j;
-            }
+        if(a[i] > max) {
+            secondMax = max;
+            max = a[i];
+        } else if (a[i] > secondMax && a[i] < max) {
+            secondMax = a[i];  // Update second smallest if it's greater than small
         }
-        temp=a[i];
-        a[i]=max;
-        a[maxind]=temp;
     }
-    printf("Second largest value is %d.", a[1]);
-
-    return 0;
+    if (secondMax != INT_MIN)
+        printf("Second largest value is %d.\n", secondMax);
+    else
+        printf("Second largest value does not exist.\n");
+        return 0;
 }

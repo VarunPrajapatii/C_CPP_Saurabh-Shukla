@@ -2,7 +2,7 @@
 
 #include<stdio.h>
 
-void arrayreverse(int *, int);
+void arrayreverse(int [], int);
 
 int main()
 {
@@ -19,19 +19,19 @@ int main()
     return 0;
 }
 
-void arrayreverse(int b[], int n)
+void arrayreverse(int arr[], int n)
 {
-    int i, j, k, temp;
-    for(i=0; i<(n/2); i++)
-    {   
-        temp=b[i];
-        b[i]=b[n-1-i];
-        b[n-1-i]=temp;
-
-    }
-    for(j=0; j<n; j++)
-    {
-        printf("%d ", b[j]);
+    int start=0, end=n-1, temp;
+    while(start < end){
+        temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
     }
     
+    for(int i=0; i<n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
 }

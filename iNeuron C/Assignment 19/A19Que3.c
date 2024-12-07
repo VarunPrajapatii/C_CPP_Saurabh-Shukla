@@ -2,6 +2,7 @@
 // 3. Write a program to read and display a 2D array of strings in C language.
 
 #include<stdio.h>
+#include<string.h>
 
 int main()
 {
@@ -14,10 +15,11 @@ int main()
     for(i=0; i<=n; i++)
     {
         fgets(c[i], 20, stdin);
+        c[i][strcspn(c[i], "\n")] = '\0';
     }
     printf("The strings are displayed below.");
     for(i=0; i<=n; i++)
     {
-        printf("%s", c[i]);
+        printf("%s\n", c[i]);
     }
 }

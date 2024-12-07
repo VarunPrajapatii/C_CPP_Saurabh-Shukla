@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<string.h>
 
-int checkpal(char []);
+int checkPalindrome(char [50]);
 
 int main()
 {
@@ -12,26 +12,23 @@ int main()
     printf("This program checks whether given string is palindrome or not.\n");
     printf("Enter string: ");
     fgets(c, 50, stdin);
-    ans=checkpal(c);
+    c[strcspn(c, "\n")] = '\0';
+    ans=checkPalindrome(c);
     if(ans==0)
         printf("Its not a palindrome string.");
     else
         printf("Its a palindrome string.");
 }
 
-int checkpal(char a[50])
+int checkPalindrome(char a[50])
 {
-    int i, len, mid;
-    len=strlen(a);
-    mid=len/2;
-    for(i=0; i<mid; i++)
-    {
-        if(a[i]==a[len-2-i])
-        {
-
-        }
-        else
-            return 0;
+    int start=0, end;
+    end=strlen(a)-1;
+    while(start<end) {
+        if(a[start] == a[end]) {
+            start++;
+            end--;
+        } else return 0;
     }
     return 1;
 }

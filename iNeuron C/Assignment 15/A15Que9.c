@@ -31,7 +31,7 @@ void mergearray(int a[], int b[], int n)
     int i=0, j=0, c[2*n], k=0;
     while(i!=n && j!=n)
     {
-        if(a[i]<=b[j])
+        if(a[i]>=b[j])
         {
             c[k]=a[i];
             k++;

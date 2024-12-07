@@ -3,7 +3,7 @@
 
 #include<stdio.h>
 
-int checkalphanum(char []);
+int checkalphanum(char [50]);
 
 int main()
 {
@@ -11,6 +11,7 @@ int main()
     printf("This  program check whether a given string is an alphanumeric string or not.\n");
     printf("Enter string: ");
     fgets(c, 50, stdin);
+    c[strcspn(c, "\n")] = '\0';
     ans=checkalphanum(c);
     if(ans==0)
     {

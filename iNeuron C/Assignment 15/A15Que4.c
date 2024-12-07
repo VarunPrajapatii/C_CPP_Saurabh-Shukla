@@ -2,9 +2,12 @@
 // (For example, if array of size 5 is [32, 29, 40, 12, 70]; n is 2 and d is left, then the resulting array after left rotation 2 times is [40, 12, 70, 32, 29] )
 
 
+//REVERSAL ALGORITHM
+
 #include<stdio.h>
 
-void arrayrotate(int [], int, int, int);
+void arrayRotate(int [], int, int, int);
+void reverse(int [], int, int);
 
 int main()
 {
@@ -25,45 +28,33 @@ int main()
             scanf("%d", &a[i]);
         }
     }
-    arrayrotate(a, n, np, d);
+    arrayRotate(a, n, np, d);
+    for(int i=0; i<n; i++) {
+        printf("%d ", a[i]);
+    }
     return 0; 
 }
 
 
-void arrayrotate(int a[], int n, int np, int d)
-{
-    int i, j, k, temp;
-    if(d==1)
-    {
-        for(i=0; i<np; i++)
-        {
-            for(j=0; j<n-1; j++)
-            {
-                temp=a[j];
-                a[j]=a[j+1];
-                a[j+1]=temp;
-            }
-        }
-        for(k=0; k<n; k++)
-            printf("%d ", a[k]);
+void arrayRotate(int arr[], int n, int np, int d) {
+    if(d == 0) {
+        reverse(arr, 0, np-1);
+        reverse(arr, np, n-1);
+        reverse(arr, 0, n-1);
     }
-    else
-    {
-        if(d==0)
-        {
-            for(i=0; i<np; i++)
-            {
-                for(j=n-1; j>0; j--)
-                {
-                    temp=a[j];
-                    a[j]=a[j-1];
-                    a[j-1]=temp;
-                }
-            }
-            for(k=0; k<n; k++)
-                printf("%d ", a[k]);
-        }
-        else
-            printf("Enter correct value for direction.");
+    if(d == 1) {
+        reverse(arr, 0, n-1);
+        reverse(arr, 0, np-1);
+        reverse(arr, np, n-1);
+    }
+}
+
+void reverse(int arr[], int start, int end) {
+    while(start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
     }
 }

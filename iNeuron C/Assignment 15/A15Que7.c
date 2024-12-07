@@ -56,3 +56,5 @@ int * sort(int b[], int n)
     }
     return b;
 }
+
+// Time complexity can be improved if merge/quick sort is used 

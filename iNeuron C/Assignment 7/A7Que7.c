@@ -3,6 +3,8 @@
 
 
 #include<stdio.h>
+#include<math.h>
+
 int main()
 {
     int a, b, i, j, flag=0;
@@ -12,7 +14,7 @@ int main()
     printf("\nThe prime numbers between %d and %d are:  ", a, b);
     for(i=a; i<=b; i++)
     {
-        for(j=2; j<=(i/2); j++)
+        for(j=2; j<=sqrt(a); j++)
         {
             if(i%j==0)
             {
