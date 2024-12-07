@@ -18,7 +18,7 @@ void display(struct Employee);
 int main()
 {
     struct Employee e1;
-    e1=(input());
+    e1=input();
     display(e1);
     return 0;
 }
@@ -34,7 +34,6 @@ struct Employee input()
     scanf("%f", &e.salary);
     return e;
 }
-
 
 void display(struct Employee e)
 {

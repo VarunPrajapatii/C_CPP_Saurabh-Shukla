@@ -17,7 +17,7 @@ float calculatePer(struct Marks);
 
 int main()
 {
-    printf("This program enters marks of 5 students and calculates percentage.\n");
+    printf("This program lets you enters marks of 5 students and calculates percentage.\n");
     struct Marks s1[5];
     int i;
     float per;

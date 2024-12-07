@@ -1,62 +1,48 @@
 // Que4
 // 4. Write a function to find the highest salary employee from a given array of 10 employees. [ Refer structure from question 1]
 
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
 
-struct Employee
-{
+struct Employee {
     int id;
     char name[20];
     float salary;
 };
 
+
 struct Employee input();
 void display(struct Employee);
-int highestsalary(struct Employee []);
 
-int main()
-{
-    printf("This program find the highest salary employee from a given array of 10 employees.\n");
-    struct Employee e[10];
-    int i, index;
-    for(i=0; i<10; i++)
-    {
-        e[i]=input();
-    }
-    index=highestsalary(e);
-    printf("The highest salaried employee is: ");
-    display(e[index]);
+int main() {
+    struct Employee e1;
+    e1 = input();
+    display(e1);
     return 0;
 }
 
-struct Employee input()
-{
+struct Employee input() {
     struct Employee e;
-    printf("Enter Id, Name and salary of the Employee separated with enter keys: ");
+
+    printf("Enter Employee ID: ");
     scanf("%d", &e.id);
-    fflush(stdin);
+
+    while (getchar() != '\n');
+
+    printf("Enter Employee Name: ");
     fgets(e.name, 20, stdin);
-    e.name[strlen(e.name)-1]='\0';
+
+    e.name[strcspn(e.name, "\n")] = '\0';
+
+    printf("Enter Employee Salary: ");
     scanf("%f", &e.salary);
+
     return e;
 }
 
-int highestsalary(struct Employee e[])
-{
-    int i, index=0, salary=e[0].salary;
-    for(i=0; i<10; i++)
-    {
-        if(salary<e[i].salary)
-        {
-            salary=e[i].salary;
-            index=i;
-        }
-    }
-    return index;
-}
-
-void display(struct Employee e)
-{
-    printf("%d %s %f", e.id, e.name, e.salary);
+void display(struct Employee e) {
+    printf("\n--- Employee Details ---\n");
+    printf("ID: %d\n", e.id);
+    printf("Name: %s\n", e.name);
+    printf("Salary: %.2f\n", e.salary);
 }

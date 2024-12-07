@@ -35,7 +35,7 @@ void input(struct student s1[], int size)
         scanf("%d", &s1[i].rollno);
         fflush(stdin);
         fgets(s1[i].name, 30, stdin);
-        s1[i].name[strlen(s1[i].name)-1]='\0';
+        s1[i].name[strcspn(s1[i].name, "\n")]='\0';
     }
 }
 
