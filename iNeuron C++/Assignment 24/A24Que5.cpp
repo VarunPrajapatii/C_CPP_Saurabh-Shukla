@@ -4,43 +4,30 @@
 #include<iostream>
 using namespace std;
 
-int checkfib(int);
-int fib(int);
+bool isFibonacci(int n) {
+    int a = 0, b = 1, c = 0;
 
-
-int fib(int n)
-{
-    if(n==1 || n==2)
-    {
-        return 1;
+    while (c <= n) {
+        if (c == n) {
+            return true;
+        }
+        c = a + b;
+        a = b;
+        b = c;
     }
-    return (fib(n-1)+fib(n-2));
+    return false;
 }
 
-int checkfib(int n)
-{
-    int i;
-    for(i=1; i<n; i++)
-    {
-        if(n==fib(i))
-        {
-            return 1;
-        }
+int main() {
+    int n;
+    cout << "This program checks whether a given number is a term in the Fibonacci series or not." << endl;
+    cout << "Enter number: ";
+    cin >> n;
+
+    if (isFibonacci(n)) {
+        cout << "Number is in the Fibonacci series." << endl;
+    } else {
+        cout << "Number is not in the Fibonacci series." << endl;
     }
     return 0;
-}
-
-int main()
-{
-    int n;
-    cout<<"This program check whether a given number is a term in a Fibonacci series or not."<<endl;
-    cout<<"Enter number: ";
-    cin>>n;
-    int result;
-    result=checkfib(n);
-    if(result==1)
-        cout<<"Number is in the Fibonacci Series.";
-    else
-        cout<<"Number is not in the Fibonacci Series";
-
 }

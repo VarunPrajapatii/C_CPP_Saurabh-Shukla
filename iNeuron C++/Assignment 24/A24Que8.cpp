@@ -30,9 +30,6 @@ float area(int a, int b, int c)
     return area;
 }
 
-
-
-
 int main()
 {
     int r, l, b, x, y, z;

@@ -18,7 +18,7 @@ class ReverseNumber
 
         int Reverse()
         {
-            int i, a, rev=0;
+            int a, rev=0;
             a=n;
             while(a!=0)
             {

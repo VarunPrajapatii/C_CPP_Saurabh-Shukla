@@ -30,6 +30,4 @@ int main()
     cout<<"Area of Square is "<<a1.areaSq(5)<<endl;
     cout<<"Area of Rectangle is "<<a1.areaRec(2,8)<<endl;
     cout<<"Area of Circle is "<<a1.areaCir(5);
-
-
 }

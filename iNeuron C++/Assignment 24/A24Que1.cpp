@@ -1,37 +1,30 @@
 // Que1
 // 1. Define a function to check whether a given number is a Prime number or not.
 
-#include<iostream>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
-int checkPrime(int n)
-{
-    int i, flag=0;
-    for(i=2; i<=n/2; i++)
-    {
-        flag=0;
-        if(n%i==0)
-        {
-            flag=1;
-            break;
+bool checkPrime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return false;
         }
     }
-    return flag;
+    return true;
 }
 
-
-int main()
-{
-    int n,i, flag=0;
-    cout<<"Enter a number to check whether its a prime number or not: ";
-    cin>>n;
-    flag=checkPrime(n);
-    if(flag==1)
-    {
-        cout<<"Its not a prime number.";
-    }
-    else
-    {
-        cout<<"Its a prime number";
+int main() {
+    int n;
+    cout << "Enter a number to check whether it's a prime number or not: ";
+    cin >> n;
+    
+    if (checkPrime(n)) {
+        cout << "It's a prime number.";
+    } else {
+        cout << "It's not a prime number.";
     }
 }
