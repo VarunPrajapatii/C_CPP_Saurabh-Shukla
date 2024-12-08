@@ -20,6 +20,7 @@ class Time
             h=a;
             m=b;
             s=c;
+            normalize();
         }
         void showTime()
         {
@@ -27,7 +28,10 @@ class Time
         }
         void normalize()
         {
-
+            m = m + (s/60);
+            s = s % 60;
+            h = h + (m/60);
+            m = m % 60;
         }
         Time add(Time t)
         {
@@ -35,17 +39,19 @@ class Time
             temp.h=h+t.h;
             temp.m=m+t.m;
             temp.s=s+t.s;
+            temp.normalize();
             return temp;
         }
 };
 
 int main()
 {
-    Time t1, t2;
-    t1.setTime(5,31,28);
-    t2.setTime(1,50,12);
+    Time t1, t2, t3;
+    t1.setTime(5, 31, 28);
     t1.showTime();
+    t2.setTime(1, 50, 125);
     t2.showTime();
-    (t1.add(t2)).showTime();
+    t3 = t1.add(t2);
+    t3.showTime();
     return 0;
 }

@@ -10,7 +10,7 @@ class student
     int rollno;
     char name[20];
     public:
-        student(int r, char *n)
+        student(int r, const char *n)
         {
             rollno=r;
             strcpy(name, n);

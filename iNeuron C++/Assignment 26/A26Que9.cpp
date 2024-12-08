@@ -16,7 +16,7 @@ class Bill
     char name[20];
     int units;
     public:
-        void get(char *n, int u)
+        void get(const char *n, int u)
         {
             units=u;
             strcpy(name, n);

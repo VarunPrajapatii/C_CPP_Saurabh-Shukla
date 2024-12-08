@@ -10,7 +10,7 @@ class Date
     char month[20];
     int date, year;
     public:
-        Date(int d, char *m, int y)
+        Date(int d, const char *m, int y)   // This ensures you adhere to C++ rules about immutability of string literals while keeping a C-style interface.
         {
             date=d;
             strcpy(month, m);
