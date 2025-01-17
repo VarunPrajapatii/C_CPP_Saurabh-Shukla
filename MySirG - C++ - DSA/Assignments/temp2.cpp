@@ -1,53 +1,33 @@
-// #include <iostream>
-// #include <vector>
 #include<bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int> &arr, int start, int mid, int end) {
-    vector<int> temp(end-start+1);
-    int i=start, j=mid+1, index=0;
-    while(i<=mid && j<=end) {
-        if(arr[i] <= arr[j]) {
-            temp[index] = arr[i];
-            i++;
-        } else {
-            temp[index] = arr[j];
-            j++;
-        }
-        index++;
-    }
-    while(i <= mid) {
-        temp[index] = arr[i];
-        i++;
-        index++;
-    }
+int partition(vector<int> &arr, int start, int end) {
+    int pos=start;
 
-    while(j <= end) {
-        temp[index] = arr[j];
-        j++;
-        index++;
+    for(int i=start; i<=end; i++) {
+        if(arr[i] <= arr[end]) {
+            swap(arr[i], arr[pos]);
+            pos++;
+        }
     }
-    index=0;
-    while(start<=end) {
-        arr[start] = temp[index];
-        start++, index++;
-    }
+    return pos-1;
 }
 
-void mergeSort(vector<int> &arr, int start, int end) {
+void quickSort(vector<int> &arr, int start, int end) {
     if(start >= end) return;
-    int mid = start + (end-start)/2;
-    mergeSort(arr, start, mid);
-    mergeSort(arr, mid+1, end);
-    merge(arr, start, mid, end);
+    int pivot = partition(arr, start, end);
+
+    quickSort(arr, start, pivot-1);
+    quickSort(arr, pivot+1, end);
 }
 
 
 int main() {
-    vector<int> nums={6,3,5,2,2,8,1,3,2,9};
-    mergeSort(nums, 0, nums.size()-1);
-    for(int i=0; i<nums.size(); i++) {
-        cout<<nums[i]<<" ";
+    vector<int> arr={6,4,2,8,13,7,11,9,3,6};
+
+    quickSort(arr, 0, arr.size()-1);
+
+    for(int i=0; i<arr.size(); i++) {
+        cout<<arr[i]<<" ";
     }
-    return 1;
 }
