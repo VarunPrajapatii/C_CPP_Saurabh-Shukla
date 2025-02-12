@@ -92,7 +92,7 @@ void CLL::InsertEnd(int data)
 
 node* CLL::Search(int n)
 {
-    if(last)    //list is non empty
+    if(last)
     {
         node *temp=last->next;
         if(last->item==n)
@@ -105,9 +105,8 @@ node* CLL::Search(int n)
         }
         return NULL;
 
-
         // Or you can use do while loop as sir used in his code.
-        // temp=last->next;
+        // node *temp=last->next;
         // do
         // {
         //     if(temp->item==n)
@@ -170,28 +169,6 @@ void CLL::DeleteLast()
             last=t;
         }
     }
-// that was sir's logic
-
-
-    // if(last==NULL)
-    //     cout<<endl<<"UnderFlow";
-    // else
-    // {
-    //     if(last->next==last)
-    //     {
-    //         delete last;
-    //         last=NULL;
-    //     }
-    //     else
-    //     {
-    //         node *temp=last->next;
-    //         while(temp->next!=last)
-    //             temp=temp->next;
-    //         temp->next=last->next;
-    //         delete last;
-    //         last=temp;
-    //     }
-    // }
 }
 
 void CLL::DeleteSpecific(node *temp)
@@ -210,17 +187,6 @@ void CLL::DeleteSpecific(node *temp)
             last=t;
         delete temp;
     }
-
-
-
-    // if(temp->next)
-    // {
-    //     node *p=last;
-    //     while(p->next!=temp)
-    //         p=p->next;
-    //     p->next=temp->next;
-    //     delete temp;
-    // }
 }
 
 CLL::~CLL()

@@ -139,16 +139,6 @@ void DLL::DeleteLastNode()
         else
             start==NULL;
         delete temp;
-
-
-
-        // if(start->next==NULL)
-        //     delete start;
-        // else 
-        // {
-        //     temp->prev->next=NULL;
-        //     delete temp;
-        // }
     }
 }
 
@@ -158,47 +148,13 @@ void DLL::DeleteSpecific(node *temp)
         temp->prev->next=temp->next;
     else
         start=temp->next;
-    if(temp->next)
+    if(temp->next)0
         temp->next->prev=temp->prev;
     delete temp;
-
-
-
-    // if(start==NULL)
-    //     cout<<endl<<"Underflow";
-    // else
-    // {
-    //     if(start==temp)
-    //     {
-    //         start=temp->next;
-    //         start->prev=NULL;
-    //         delete temp;
-    //     }
-    //     else
-    //     {
-    //         temp->prev->next=temp->next;
-    //         temp->next->prev=temp->prev;
-    //         delete temp;
-    //     }
-        // start he temp ho. aur ek he node ho toh iss situation mein kya hoga check karo...
-        // Also temp last variable ho toh uss situation mein kya hoga check...
-    // }
 }
 
 DLL::~DLL()
 {
-    // if(start==NULL)
-    // {}
-    // else
-    // {
-    //     node *temp=start;
-    //     while(temp->next!=NULL)
-    //     {
-    //         temp=temp->next;
-    //         delete temp->prev;
-    //     }
-    // }
-
     while(start)
         DeleteFirstNode();
 }

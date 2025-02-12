@@ -180,6 +180,7 @@ void SLL::DeleteLast()
         p=start;
         delete p;
         p=NULL;
+        start=NULL;
     }
     else
     {
@@ -219,25 +220,6 @@ void SLL::DeleteSpecific(node *temp)
             }
         }
     }
-
-
-
-    /*Again my logic was to delete node with item as n.*/
-    // node *p=start, *temp;
-    // while(p->next!=NULL)
-    // {
-    //     if(p->item==n)
-    //     {
-    //         temp->next=p->next;
-    //         delete p;
-    //     }
-    //     else
-    //     {
-    //         temp=p;
-    //         p=p->next;
-    //     }
-    // }
-
 }
 
 SLL::~SLL()

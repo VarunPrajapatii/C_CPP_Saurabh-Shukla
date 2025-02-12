@@ -348,99 +348,141 @@ int SLL::CycleLength()
 
 void SLL::SortSLL()
 {
-    node *end=start, *max, *p, *min;
-    while(end->next!=NULL)
-        end=end->next;
-    min=start;
-    p=start;
-    do
-    {
-        p=p->next;
-        if(p->item<min->item)
-            min=p;
-    } while (p!=end);
-    if(min==end)        //Agar min end mein he hua toh hame kuch nahi karna
-    {}
-    else    //Agar min end mein nahi hua toh min ko end mein shift karenge.
-    {
-        InsertAfter(end, min->item);
-        DeleteSpecific(min);
-        end=end->next;
+    // node *end=start, *max, *p, *min;
+    // while(end->next!=NULL)
+    //     end=end->next;
+    // min=start;
+    // p=start;
+    // do
+    // {
+    //     p=p->next;
+    //     if(p->item<min->item)
+    //         min=p;
+    // } while (p!=end);
+    // if(min==end)        //Agar min end mein he hua toh hame kuch nahi karna
+    // {}
+    // else    //Agar min end mein nahi hua toh min ko end mein shift karenge.
+    // {
+    //     InsertAfter(end, min->item);
+    //     DeleteSpecific(min);
+    //     end=end->next;
+    // }
+    // while(start!=end)
+    // {
+    //     max=start;
+    //     p=start;
+    //     do
+    //     {
+    //         p=p->next;
+    //         if(p->item>max->item)
+    //             max=p;
+    //     }while(p!=end);
+    //     InsertAfter(end, max->item);
+    //     DeleteSpecific(max);
+    // }
+    
+
+    //one more way that aap do pointers ko leke swap kar sakte values only
+
+    // node *temp=start, *p=start, *min=start;
+    // if(start) {
+    //     while(temp->next!=NULL) {
+    //         while(p != NULL) {
+    //             if(p->data < min->data) {
+    //                 min=p;
+    //             }
+    //             p = p->next;
+    //         }
+    //         int swapTemp = temp->data;
+    //         temp->data = min->data;
+    //         min->data = swapTemp;
+    //     }
+    //     temp = temp->next;
+    //     min = temp;
+    //     p = temp;
+    // }
+
+    /**
+     * Avoid swapping data fields directly (Algorithm 2).
+     * Avoid redundant insertions and deletions (Algorithm 1).
+     * Instead, detach the minimum node and attach it to the sorted sublist.
+     * Consider a data field that holds pointers to other data. Swapping only the data fields without updating these pointers could lead to dangling references or memory leaks.
+     * Why it's an issue: In well-designed object-oriented systems, the data fields of a node are often private or protected, and accessing them directly from outside the class violates encapsulation. Instead, operations like swapping should be done via provided methods (e.g., pointer manipulations) to adhere to encapsulation principles.
+     * 
+     */
+
+    if (!start || !start->next) 
+        return; // Empty or single-node list is already sorted.
+
+    node *sortedEnd = nullptr; // Pointer to the end of the sorted portion of the list.
+
+    while (start != sortedEnd) {
+        // Initialize pointers for the current iteration
+        node *prevMin = nullptr;  // Pointer to the node just before the minimum node.
+        node *minNode = start;    // Pointer to the minimum node in the unsorted portion.
+        node *current = start;
+        node *prev = nullptr;
+
+        // Find the minimum node in the unsorted portion
+        while (current != sortedEnd) {
+            if (current->item < minNode->item) {
+                prevMin = prev;
+                minNode = current;
+            }
+            prev = current;
+            current = current->next;
+        }
+
+        // If minNode is not already the first unsorted node, move it to the front
+        if (minNode != start) {
+            if (prevMin) 
+                prevMin->next = minNode->next; // Unlink minNode from its current position.
+            
+            minNode->next = start; // Move minNode to the front of the unsorted portion.
+            start = minNode;
+        }
+
+        // Advance sortedEnd to include the newly sorted node
+        if (!sortedEnd) {
+            sortedEnd = start;
+        } else {
+            sortedEnd = sortedEnd->next;
+        }
     }
-    while(start!=end)
-    {
-        max=start;
-        p=start;
-        do
-        {
-            p=p->next;
-            if(p->item>max->item)
-                max=p;
-        }while(p!=end);
-        InsertAfter(end, max->item);
-        DeleteSpecific(max);
-    }
-}       //one more way that aap do pointers ko leke swap kar sakte values only
+}
+
 
 node* SLL::MergeSortedSLL(node *a, node *b)
 {
-    int flag=0;
-    node *ll=NULL, *t1=a, *t2=b, *temp=ll;
-    while(t1!=NULL || t2!=NULL)
-    {
-        if(t1->item < t2->item)
-        {
-            a=a->next;
-            if(flag==0)         //for first ever node
-            {
-                node *n=new node;
-                n->item=t1->item;
-                n->next=NULL;
-                ll=n;
-                temp=ll;
-                flag=1;
-                delete t1;
-                t1=a;
-            }
-            node *n=new node;
-            n->item=t1->item;
-            n->next=NULL;
-            temp->next=n;
-            temp=temp->next;
-            delete t1;
-            t1=a;
-
-        }
-        else
-        {
-            b=b->next;
-            if(flag==0)         //for first ever node
-            {
-                node *n=new node;
-                n->item=t2->item;
-                n->next=NULL;
-                ll=n;
-                temp=ll;
-                flag=1;
-                delete t2;
-                t2=b;
-            }
-            node *n=new node;
-            n->item=t2->item;
-            n->next=NULL;
-            temp->next=n;
-            temp=temp->next;
-            delete t2;
-            t2=b;
-        }
+    if (!a) return b; // If 'a' is empty
+    if (!b) return a;
+    
+    node *c=NULL, *temp=NULL;
+    if(a->data <= b->data) {
+        c = a;
+        a = a->next;
+    } else {
+        c = b;
+        b = b->next;
     }
-    if(t1==NULL)
-        temp->next=t2;
-    else
-        temp->next=t1;
+    temp=c;
+    while(a && b) {
+        if(a->data <= b->data) {
+            temp->next = a;
+            a = a->next;
+        } else {
+            temp->next = b;
+            b = b->next;
+        }
+        temp = temp->next;
+    }
+    if(a) {
+        temp->next = a;
+    } else {
+        temp->next = b;
+    }
 
-    return ll;
-
+    return c;
 }
 
 
