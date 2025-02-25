@@ -66,6 +66,22 @@ class MaxHeap {
         }
     }
 
+    // Heap Sort Function
+    void heapSort() {
+        int originalSize = size; // Store original heap size
+
+        // Step 1: Build Max Heap (already done while inserting)
+
+        // Step 2: Extract elements one by one
+        for(int i = size - 1; i > 0; i--) {
+            swap(arr[0], arr[i]); // Move the root (largest) to the end
+            size--; // Reduce heap size
+            Heapify(0); // Restore heap property
+        }
+
+        size = originalSize; // Restore original heap size
+    }
+
     void print() {
         for(int i=0; i<size; i++) {
             cout<<arr[i]<<" ";
